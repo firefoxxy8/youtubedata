@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(\"twitteR\")\nlibrary(\"wordcloud\")\nlibrary(\"tm\")\n\n#to get your consumerKey and consumerSecret see the twitteR documentation for instructions\nconsumer_key <- '34YVnpjL9uCkX7WsZzrEZqcVA'\nconsumer_secret <- 'eoOXxdxO0FEl0lVZowipXOqpoc5kBIWsYtcgRAf2fB5CtwGTYC'\naccess_token <- '2865404679-S1MwqZLYGFtHZNr0P0UtuBLvPAmdW7BA6FhXOIm'\naccess_secret <- '6uF2bOa8CTpXE957LBy8rkEkVpbkPSE6ErHc7MWjwMKea'\nsetup_twitter_oauth(consumer_key,\n                    consumer_secret,\n                    access_token,\n                    access_secret)\neddl <- getUser(\"cathryn_tonne\")\nid <- eddl$getId()\ngetUser(id)\neddl$getDescription()\neddl$getFollowersCount()\ntweets <- userTimeline(eddl, n=3200)\ndf <- twListToDF(tweets)\nlibrary(\"dplyr\")\nlibrary(\"lubridate\")\neddlTweets <- tbl_df(df)\neddlTweets <- mutate(eddlTweets,\n                    week = lubridate::isoweek(created),\n                    weekday = lubridate::wday(created,\n                                              label = TRUE,\n                                              abbr = FALSE)) %>%\n  arrange(created)\n\nlibrary(\"syuzhet\")\nlibrary(\"tidyr\")\nlala <- tbl_df(get_nrc_sentiment(eddlTweets$text)) %>%\n  mutate(index = 1:nrow(eddlTweets)) %>%\n  gather(sentiment, score, 1:10)\n\nlibrary(\"ggplot2\")\nggplot(lala) +\n  geom_bar(aes(index, score, fill = sentiment),\n           stat = \"identity\") +\n  facet_grid(sentiment ~.)\n\ncathryn <- cbind(eddlTweets,  tbl_df(get_nrc_sentiment(eddlTweets$text)))\n",
+    "created" : 1458734833658.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4048129815",
+    "id" : "1A453F57",
+    "lastKnownWriteTime" : 1457696120,
+    "last_content_update" : 1457696120,
+    "path" : "P:/Misc/twitteR/twitteR2.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

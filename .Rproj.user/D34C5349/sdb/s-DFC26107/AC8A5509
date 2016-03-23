@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "yt_oauth(\"141822751394-9s0upqcqu7tl2mvhjqdauuv5g8pkdqdj.apps.googleusercontent.com\",\n         \"qqYu_BLvt06omYmkdzEg9H5c\")",
+    "created" : 1458750598732.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2527171449",
+    "id" : "AC8A5509",
+    "lastKnownWriteTime" : 1458750605,
+    "last_content_update" : 1458750607016,
+    "path" : "P:/youtube.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

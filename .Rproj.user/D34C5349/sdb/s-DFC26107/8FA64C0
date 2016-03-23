@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(\"ggplot2\")\nlibrary(\"Ropenaq\")\nlibrary(\"dplyr\")\nlibrary(\"emojifont\")\nlibrary(\"gganimate\")\nlist.emojifonts()\nlibrary(\"lubridate\")\ndate1 <- ymd(\"2012-10-08\")\ndate2 <- ymd(\"2016-03-07\")\ndifftime(date2, date1, units = \"days\")\n\nload.emojifont('OpenSansEmoji.ttf')\n\ndata <- readr::read_csv2(\"gestation.csv\") %>%\n  arrange(gestation) %>%\n  mutate(animal = factor(animal,\n                         levels = animal[order(gestation, \n                                               decreasing = TRUE)],\n                         ordered = TRUE))\n\np <- ggplot(data) +\n  geom_bar(aes(x = animal,\n               y = gestation,\n               frame = gestation,\n               cumulative = TRUE,\n               fill = color),\n           stat = \"identity\") +\n  scale_fill_manual(values = c(\"grey30\",\n                               \"darkgoldenrod1\")) +\n  geom_text(aes(x = animal, \n                y = gestation + 45,\n                frame = gestation,\n                cumulative = TRUE,\n                label = emoji(label)),\n            family=\"OpenSansEmoji\", size=8) +\n  theme(axis.text.y=element_blank(),\n        axis.ticks=element_blank(),\n        text = element_text(size=20),\n        legend.position=\"none\")+\n  coord_flip() +\n  xlab(\"Animal\") +\n  ylab(\"Gestation time in days\")\n  \ngg_animate(p, \"gestation.gif\",\n           interval = c(rep(1,11), 4))",
+    "created" : 1458741620002.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2802476133",
+    "id" : "8FA64C0",
+    "lastKnownWriteTime" : 1458741705,
+    "last_content_update" : 1458741707684,
+    "path" : "P:/Misc/gif/viz.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
