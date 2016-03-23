@@ -77,7 +77,7 @@ p <- ggplot(dataCats) +
            position="dodge",
            width = 0.8)+
   scale_fill_manual(values = catColors) +
-  theme(text = element_text(size=25))
+  theme(text = element_text(size=40))
 
 p <- p+ labs( y="Mean score",
          title=paste0("Battle of two Youtube stars"),
@@ -85,4 +85,4 @@ p <- p+ labs( y="Mean score",
                          nrow(keyboardCatComments), " comments on a Keyboard Cat and ",
                          nrow(maruComments), " comments on a Maru video, all in English"))
 
-ggsave(p, file = "catswar.png")
+ggsave(p, file = "catswar.png", width = 10, height = 10)
